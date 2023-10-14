@@ -1,60 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 struct Node {
     int data;
     struct Node* next;
 };
-struct Node* top = NULL;
 
-void push(int value) {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    if (newNode == NULL) {
-        printf("Stack overflow\n");
-        return;
-    }
-    newNode->data = value;
-    newNode->next = top; 
-    top = newNode; 
+struct Node* push(struct Node* top, int data) {
+    struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+
+    temp->data = data;
+    temp->next = top;
+    top = temp;
+    return top;
 }
-int pop() {
+
+void print(struct Node* top) {
+    while (top != NULL) {
+        printf("%d\n", top->data);
+        top = top->next;
+    }
+}
+
+struct Node* pop(struct Node* top) {
     if (top == NULL) {
-        printf("Stack is empty\n");
-        return -1;
+        printf("Stack is empty. Cannot pop\n");
+        return top;
     }
     struct Node* temp = top;
-    int poppedValue = temp->data;
-    top = top->next; 
-    free(temp); 
-    return poppedValue;
-}
-
-void display() {
-    if (top == NULL) {
-        printf("Stack is empty\n");
-        return;
-    }
-    struct Node* current = top;
-    printf("Stack: ");
-    while (current != NULL) {
-        printf("%d ", current->data);
-        current = current->next;
-    }
-    printf("\n");
+    top = top->next;
+    free(temp);
+    return top;
 }
 
 int main() {
-    push(10);
-    push(20);
-    push(30);
-    push(2000);
-    display();
+    struct Node* top = NULL;
+
+    top = push(top, 10);
+    top = push(top, 20);
+    top = push(top, 30);
+    top = push(top, 40);
+
+    print(top);
+
+    top = pop(top);
+    top = pop(top);
+
+    print(top);
+
     
-    printf("Popped element is %d\n", pop()); 
-    
-    display();
     
     return 0;
 }
-

@@ -1,70 +1,63 @@
 #include <stdio.h>
-#define MAX_SIZE 100
+#include<stdlib.h>
 
-int stack[MAX_SIZE];
-int top = -1;
+struct stack{
+  int size;
+  int top;
+  int * array;
 
-int Empty() {
-    return top == -1;
+};
+void isFull(struct stack * s){
+  if(s->top==s->size-1){
+    printf("it is isFull");
+  }
+}
+void isEmpty(struct stack* s){
+  if(s->top==-1){
+    printf("stack is empty");
+  }
 }
 
-int Full() {
-    return top == MAX_SIZE - 1;
+int push(struct stack* s,int data){
+  
+  s->top++;
+  s->array[s->top]=data;
+  return s->top;
+
+
+}
+void print(struct stack* s){
+  for (int i=0;i<=s->top;i++)
+    printf("\n%d\n",s->array[i]);
 }
 
-void push(int value) {
-    if (Full()) {
-        printf("Stack full %d\n", value);
-    } 
-  else {
-        stack[++top] = value;
-    }
-}
+int pop(struct stack* s ){
+  int data=s->array[s->top];
+  s->top--;
+  return data;
 
-int pop() {
-    if (Empty()) {
-        printf("Stack underflow: Cannot pop\n");
-        return -1;
-   } 
-  else {
-        return stack[top--];
-    }
-}
-
-void display() {
-    if (Empty()) {
-        printf("Stack is empty.\n");
-    } 
-  else {
-        printf("Stack elements: ");
-        for (int i = 0; i <= top; i++) {
-            printf("%d ", stack[i]);
-        }
-        printf("\n");
-    }
-}
-
-int main() {
-    push(11);
-    push(20);
-    push(10);
-    push(49);
-    push(200);
-
-    printf("After pushing elements:\n");
-    display();
-
-    int popped = pop();
-    printf("Popped element: %d\n", popped);
-
-    printf("After popping an element:\n");
-    display();
-
-    return 0;
 }
 
 
 
+int main(){
+  struct stack* s =(struct stack*)malloc(sizeof(struct stack));
+  s->size=10;
+  s->top=-1;
+  
+  s->array=(int *)malloc(s->size * sizeof(struct stack));
+  
+  push(s,1);
+  push(s,2);
+  push(s,3);
+  push(s,4);
+  push(s,5);
+  push(s,6);
+  
+  pop(s);
+
+  print(s);
 
 
 
+}
