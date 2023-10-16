@@ -1,92 +1,56 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node {
-    int data;
-    struct Node* next;
+struct Node{
+  int data;
+  struct Node* next;
 };
+struct Node* front=NULL;
+struct Node* rear=NULL;
 
-struct Queue {
-    struct Node* head;
-    struct Node* tail;
-};
+void Enque(int data){
+   struct Node* newNode=(struct Node*)malloc(sizeof(struct Node));
+    newNode->data=data;
+    newNode->next=NULL;
 
-struct Queue* createQueue() {
-    struct Queue* queue = (struct Queue*)malloc(sizeof(struct Queue));
-    queue->head = NULL;
-    queue->tail = NULL;
-    return queue;
+  if(front==NULL && rear==NULL){
+  front=rear=newNode;
+  }
+  rear->next=newNode;
+    rear=newNode;
 }
 
-void enqueue(struct Queue* queue, int data) {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    newNode->data = data;
-    newNode->next = NULL;
 
-    if (queue->tail == NULL) {
-        queue->head = newNode;
-        queue->tail = newNode;
-    } else {
-        queue->tail->next = newNode;
-        queue->tail = newNode;
-    }
+void deque(){
+  struct Node* temp=front;
+
+  front=front->next;
+  free(temp);
 }
 
-int dequeue(struct Queue* queue) {
-    if (queue->head == NULL) {
-        printf("Queue is empty\n");
-        return -1; // Return a sentinel value for an empty queue
-    }
+void print(){
+  struct Node* ptr=front;
 
-    struct Node* temp = queue->head;
-    int data = temp->data;
-
-    queue->head = temp->next;
-
-    if (queue->head == NULL) {
-        // Queue is now empty, update the tail
-        queue->tail = NULL;
-    }
-
-    free(temp);
-    return data;
+  while(ptr!=NULL){
+    printf("%d\n",ptr->data);
+    ptr=ptr->next;
+      
+  }
 }
 
-void printQueue(struct Queue* queue) {
-    struct Node* ptr = queue->head;
 
-    printf("\nCurrent items in queue:\n");
-    while (ptr != NULL) {
-        printf("%d\n", ptr->data);
-        ptr = ptr->next;
-    }
+int main(){
+  Enque(10);
+  Enque(20);
+  Enque(30);
+  Enque(40);
+  print();
+  printf("After dequing:\n");
+  deque();
+  deque();
+  
+  print();
+
 }
 
-int main() {
-    struct Queue* queue = createQueue();
 
-    enqueue(queue, 10);
-    enqueue(queue, 20);
-    enqueue(queue, 30);
-    printQueue(queue);
-
-    int dequeued = dequeue(queue);
-    if (dequeued != -1) {
-        printf("Dequeued item: %d\n", dequeued);
-    }
-
-    printQueue(queue);
-
-    // Dequeue the remaining items
-    while (queue->head != NULL) {
-        dequeued = dequeue(queue);
-        if (dequeued != -1) {
-            printf("Dequeued item: %d\n", dequeued);
-        }
-    }
-
-    // Free allocated memory
-    free(queue);
-
-    return 0;
-}

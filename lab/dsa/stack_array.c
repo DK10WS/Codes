@@ -25,6 +25,7 @@ int push(struct stack* s,int data){
   return s->top;
 
 
+
 }
 void print(struct stack* s){
   for (int i=0;i<=s->top;i++)
@@ -37,8 +38,6 @@ int pop(struct stack* s ){
   return data;
 
 }
-
-
 
 int main(){
   struct stack* s =(struct stack*)malloc(sizeof(struct stack));
