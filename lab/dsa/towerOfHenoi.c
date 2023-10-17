@@ -14,6 +14,6 @@ void Henoi(int size,char from,char aux,char to){
 }
 
 int main(){
-  int size=4;
-  Henoi(size,'a','c','b');
+  int size=3;
+  Henoi(size,'a','b','c');
 }
