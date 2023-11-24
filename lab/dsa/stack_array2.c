@@ -5,14 +5,18 @@ int A[MAX];
 int top=-1;
 
 void push(int data){
+  if (top==MAX){
+    printf("Cannot push \n");
+  }
   top++;
   A[top]=data;
-  
 }
 
 void pop(){
+  if (top==-1){
+    printf("Stack is empty\n");
+  }
   top--;
-
 }
 
 void print(){
@@ -26,6 +30,7 @@ int main(){
   push(30);
   print();
   printf("\nAfter poping:\n");
+  pop();
   pop();
   print();
 }
