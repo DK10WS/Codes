@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node{
+typedef struct Node{
   int data;
   struct Node* next;
   
-};
+}Node;
 
-struct Node* END(struct Node* head,int data){
-  struct Node* newNode=
-(struct Node* )malloc(sizeof(struct Node));
+Node* END(Node* head,int data){
+  Node* newNode=
+(Node* )malloc(sizeof(Node));
 
-  struct Node* ptr=head;
+  Node* ptr=head;
 
   newNode->data=data;
   newNode->next=NULL;
@@ -23,8 +23,8 @@ ptr->next=newNode;
 return head;
 }
 
-void print(struct Node* head){
-  struct Node* ptr=head;
+void print(Node* head){
+  Node* ptr=head;
 
   while(ptr!=NULL){
     printf("%d\n",ptr->data);
@@ -32,9 +32,9 @@ void print(struct Node* head){
   }
 }
 
-struct Node* Start(struct Node* head,int data){
-  struct Node* newNode=(struct Node* )malloc(sizeof(struct Node));
-  struct Node* ptr=head;
+Node* Start(Node* head,int data){
+  Node* newNode=(Node* )malloc(sizeof(Node));
+  Node* ptr=head;
 
   newNode->data=data;
   newNode->next=head;
@@ -45,10 +45,10 @@ struct Node* Start(struct Node* head,int data){
 }
 
 
-struct Node* middle(struct Node* head,int data,int loc){
-  struct Node* newNode=(struct Node*)malloc(sizeof(struct Node));
-  struct Node* ptr=head;
-  struct Node* temp=head;
+Node* middle(Node* head,int data,int loc){
+  Node* newNode=(Node*)malloc(sizeof(Node));
+  Node* ptr=head;
+  Node* temp=head;
   temp=temp->next;
 
   newNode->data=data;
@@ -66,12 +66,15 @@ struct Node* middle(struct Node* head,int data,int loc){
 
 
 int main(){
-  struct Node* head=(struct Node* )malloc(sizeof(struct Node));
+  Node* head=(Node* )malloc(sizeof(Node));
  head->next=NULL;
   head->data=10;
-    
-  END(head,20);  
-  END(head,30);
+    END(head,20);
+    END(head,30);
+    END(head,40);
+    END(head,50);
+    END(head,60);  
+    END(head,70);
   print(head);
 
   printf("\nAfter adding at start location\n");
@@ -84,5 +87,3 @@ int main(){
 
 }
  
-
-
