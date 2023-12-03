@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node {
+typedef struct Node {
     int data;
     struct Node* next;
-};
+}Node;
 
-struct Node* middle(struct Node* head, int data) {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    struct Node* ptr = head;
+Node* middle( Node* head, int data) {
+     Node* newNode = ( Node*)malloc(sizeof( Node));
+     Node* ptr = head;
 
     newNode->data = data;
     newNode->next = NULL;
@@ -25,8 +25,8 @@ struct Node* middle(struct Node* head, int data) {
     return head;
 }
 
-void print(struct Node* head) {
-    struct Node* current = head;
+void print( Node* head) {
+     Node* current = head;
     while (current != NULL) {
         printf("%d ", current->data);
         current = current->next;
@@ -34,16 +34,16 @@ void print(struct Node* head) {
     printf("\n");
 }
 
-struct Node* startdel(struct Node* head){
-  struct Node* ptr=head;
+ Node* startdel( Node* head){
+   Node* ptr=head;
   head=head->next;
   free(ptr);
   return head;
 }
 
-struct Node* delend(struct Node* head){
-  struct Node* ptr=head;
-  struct Node* extra=head->next;
+ Node* delend( Node* head){
+   Node* ptr=head;
+   Node* extra=head->next;
   while(extra->next!=NULL){
     ptr=ptr->next;
     extra=extra->next;
@@ -56,9 +56,9 @@ struct Node* delend(struct Node* head){
 }
 
 
-struct Node* delmid(struct Node* head,int index){
-  struct Node* ptr=head;
-  struct Node* extra=head->next;
+ Node* delmid( Node* head,int index){
+   Node* ptr=head;
+   Node* extra=head->next;
   int i=0;
   while(i!=index-1){
     ptr=ptr->next;
@@ -71,7 +71,7 @@ struct Node* delmid(struct Node* head,int index){
 }
 
 int main() {
-    struct Node* head = NULL;
+     Node* head = NULL;
     head = middle(head, 1);
     head = middle(head, 2);
     head = middle(head, 3);

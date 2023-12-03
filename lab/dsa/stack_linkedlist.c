@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node{
+typedef struct Node{
   int data;
   struct Node* next;
   
-};
+}Node;
 
 
-struct Node* push(struct Node* top,int data){
-  struct Node* temp=(struct Node* )malloc(sizeof(struct Node));
+Node* push(Node* top,int data){
+  Node* temp=(Node* )malloc(sizeof(Node));
   temp->data=data;
   temp->next=top;
   top=temp;
@@ -17,7 +17,7 @@ struct Node* push(struct Node* top,int data){
 
 }
 
-void print(struct Node* top){
+void print(Node* top){
   while(top!=NULL){
     printf("%d\n",top->data);
     top=top->next;
@@ -25,12 +25,12 @@ void print(struct Node* top){
 
 }
 
-struct Node* pop(struct Node* top){
+Node* pop(Node* top){
   if(top==NULL){
     printf("YOU BUMBLING BAFOON THERE IS NO ELEMENT MAYBE IF YOU WERE HALF SMART YOU WOULD HAVE GUESSED THAT RIGHT");
     return top;
   }else{
-      struct Node* temp=top;
+      Node* temp=top;
 
       top=top->next;
       free(temp);
@@ -42,7 +42,7 @@ struct Node* pop(struct Node* top){
 
 
 int main(){
-  struct Node* top=NULL;
+  Node* top=NULL;
 
   top=push(top,10);
   top=push(top,20);

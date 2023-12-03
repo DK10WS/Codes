@@ -1,14 +1,14 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-struct Node {
+typedef struct Node {
   int data;
   struct Node* next;
-};
+}Node;
 
-struct Node* add(struct Node* head, int data){
-  struct Node* ptr=head;
-  struct Node* newNode=(struct Node*)malloc(sizeof(struct Node));
+Node* add(Node* head, int data){
+  Node* ptr=head;
+  Node* newNode=(Node*)malloc(sizeof(Node));
   newNode->data=data;
 
 
@@ -25,8 +25,8 @@ struct Node* add(struct Node* head, int data){
   return head;
 }
 
-void print(struct Node* head){
-  struct Node* ptr=head;
+void print(Node* head){
+  Node* ptr=head;
 
   printf("%d\n",head->data);
     ptr=ptr->next;
@@ -40,7 +40,7 @@ void print(struct Node* head){
 
 
 int main(){
-  struct Node* head=NULL;
+  Node* head=NULL;
   head=add(head,1);
   head=add(head,2);
   head=add(head,3);

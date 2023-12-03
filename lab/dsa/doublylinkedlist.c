@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node{
+typedef struct Node{
   int data;
   struct Node* next;
   struct Node* prev;
 
-};
-struct Node* End(struct Node* head,int data){
-    struct Node* newNode= (struct Node* )malloc(sizeof(struct Node));
-    struct Node* ptr=head;
+}Node;
+Node* End(Node* head,int data){
+    Node* newNode= (Node* )malloc(sizeof(Node));
+    Node* ptr=head;
 
    newNode->data=data;
   newNode->next=NULL;
@@ -22,16 +22,16 @@ struct Node* End(struct Node* head,int data){
 
   return head;
 }
-void display(struct Node* head){
-  struct Node* ptr=head;
+void display(Node* head){
+  Node* ptr=head;
   while(ptr!=NULL){
     printf("%d\n",ptr->data);
     ptr=ptr->next;
   }
 }
 
-struct Node* start(struct Node* head,int data){
-  struct Node* newNode=(struct Node* )malloc(sizeof(struct Node));
+Node* start(Node* head,int data){
+  Node* newNode=(Node* )malloc(sizeof(Node));
   
   newNode->data=data;
   newNode->next=head;
@@ -42,8 +42,8 @@ struct Node* start(struct Node* head,int data){
   return head;
 
 }
-void reversePrint(struct Node* head){
-  struct Node* ptr=head;
+void reversePrint(Node* head){
+  Node* ptr=head;
 
   while(ptr->next!=NULL)
     ptr=ptr->next;
@@ -54,9 +54,9 @@ void reversePrint(struct Node* head){
   }
 }
 
-struct Node* middle(struct Node* head,int data,int loc){
-  struct Node* newNode=(struct Node* )malloc(sizeof(struct Node*));
-  struct Node* ptr=head;
+Node* middle(Node* head,int data,int loc){
+  Node* newNode=(Node* )malloc(sizeof(Node*));
+  Node* ptr=head;
   
   newNode->data=data;
 
@@ -73,7 +73,7 @@ struct Node* middle(struct Node* head,int data,int loc){
 }
 
   int main(){
-  struct Node* head=(struct Node* )malloc(sizeof(struct Node));
+  Node* head=(Node* )malloc(sizeof(Node));
   head->prev=NULL;
   head->next=NULL;
   head->data=10;

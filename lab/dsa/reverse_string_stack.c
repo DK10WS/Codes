@@ -2,26 +2,26 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct Node {
+typedef struct Node {
     char data;
     struct Node* next;
-};
+}Node;
 
-struct Node* push(struct Node* top, char data) {
-    struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+ Node* push( Node* top, char data) {
+     Node* temp = ( Node*)malloc(sizeof( Node));
     temp->data = data;
     temp->next = top;
     return temp;
 }
 
-struct Node* pop(struct Node* top, char* data) {
+ Node* pop( Node* top, char* data) {
     if (top == NULL) {
         printf("Stack Underflow\n");
         *data = '\0';
         return NULL;
     }
 
-    struct Node* temp = top;
+     Node* temp = top;
     *data = temp->data;
     top = top->next;
     free(temp);
@@ -29,7 +29,7 @@ struct Node* pop(struct Node* top, char* data) {
 }
 
 void reverseString(char* input) {
-    struct Node* stack = NULL;
+     Node* stack = NULL;
 
     for (int i = 0; i < strlen(input); i++) {
         stack = push(stack, input[i]);

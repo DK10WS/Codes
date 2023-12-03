@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node{
+typedef struct Node{
   int data;
   struct Node* next;
-};
-struct Node* front=NULL;
-struct Node* rear=NULL;
+}Node;
+Node* front=NULL;
+Node* rear=NULL;
 
 void Enque(int data){
-   struct Node* newNode=(struct Node*)malloc(sizeof(struct Node));
+    Node* newNode=(Node*)malloc(sizeof(Node));
     newNode->data=data;
     newNode->next=NULL;
 
@@ -22,14 +22,14 @@ void Enque(int data){
 
 
 void deque(){
-  struct Node* temp=front;
+  Node* temp=front;
 
   front=front->next;
   free(temp);
 }
 
 void print(){
-  struct Node* ptr=front;
+  Node* ptr=front;
 
   while(ptr!=NULL){
     printf("%d\n",ptr->data);

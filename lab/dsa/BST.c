@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node {
+typedef struct Node {
     int data;
     struct Node* left;
     struct Node* right;
-};
+}Node;
 
-struct Node* add(struct Node* root, int data) {
+Node* add(Node* root, int data) {
     if (root == NULL) {
-        struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+        Node* newNode = (Node*)malloc(sizeof(Node));
         newNode->data = data;
         newNode->left = NULL;
         newNode->right = NULL;
@@ -26,7 +26,7 @@ struct Node* add(struct Node* root, int data) {
     return root;
 }
 
-void inorderTraversal(struct Node* root) {
+void inorderTraversal(Node* root) {
     if (root != NULL) {
         inorderTraversal(root->left);
         printf("%d ", root->data);
@@ -35,7 +35,7 @@ void inorderTraversal(struct Node* root) {
 }
 
 int main() {
-    struct Node* root = NULL;
+    Node* root = NULL;
     root = add(root, 10);
     add(root, 5);
     add(root, 15);
